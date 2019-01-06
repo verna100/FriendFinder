@@ -1,27 +1,35 @@
-// bodyParser allows you to receive information back in JSON format so it's easy to manipulate
-var bodyParser = require ('body-parser');
-var express = require('express');
-var path = require ('path');
+// Dependencies
+var express = require("express");
+var path = require ("path");
 
+// Tells node that we are creating an "express" server
 var app = express ();
+
+// Sets an initial port. We"ll use this later in our listener
 var PORT = process.env.PORT || 8080;
 
-app.use(bodyParser.urlencoded({ extended: false}));
-
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true}));
 // parse application/JSON
-app.use(bodyParser.json())
+app.use(express.json())
 
-// this is setting a header and asking us to write what we are posting and asking us for a request. This will not let the app work since it's not a needed function for this app.
-// app.use(function(req, res) {
-//   res.setHeader('Content-Type', 'text/plain')
-//   res.write('you posted:\n')
-//   res.end(JSON.stringify(req.body,null, 2))
-// });
-
+// ================================================================================
+// ROUTER
+// The below points our server to a series of "route" files.
+// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
+// ================================================================================
 // what you do here is tell server.js to include the html-routes and use express as the app
-// require('./api-routes.js')(app);
-// require('./html-routes.js')(app);
 
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
+
+// var apiRoutes = require("./app/routing/apiRoutes");
+// var htmlRoutes = require("./app/routing/htmlRoutes");
+
+// app.use('/api', apiRoutes);
+// app.use('/', htmlRoutes);
+
+// 
 app.listen(PORT, function(){
   console.log("App listening on PORT: " + PORT);
 });
