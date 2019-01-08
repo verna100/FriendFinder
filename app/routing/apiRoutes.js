@@ -1,63 +1,57 @@
 // Your apiRoutes.js file should contain two routes:
 
-
-
-// LOAD DATA
-// We are linking our routes to a series of "data" sources.
-// These data sources hold arrays of information on table-data, waitinglist, etc.
-// ===============================================================================
-
-var surveyData = require("../data/friends");
+var surveyData = require("../data/friends.js");
 // var waitListData = require("../data/waitinglistData");
 
-
-// ===============================================================================
 // ROUTING
-// ===============================================================================
 
 module.exports = function(app) {
+
 // A GET route with the url /api/friends. This will be used to display a JSON of all possible friends.
-  app.get("/api/friends", function(req, res) {
-    res.json(surveyData);
-  });
+// The app.post request handles when a user submits a form and thus submits data to the surver
+app.post('/api/friends', function (req, res) {
+  // loop through all of the possible options
+  var bestMatch = {
+      name: "",
+      photo: "",
+      friendDifference: 1000
+  };
 
-//   app.get("/api/waitlist", function(req, res) {
-//     res.json(waitListData);
-//   });
+  // To take the result of the user's survey POST and parse it
+  var surveyData = req.body;
+  var surveyScores = surveyData.scores;
+  // To take the results of the user's name and photo, other than the survey questions, to post and parse it
+  var surveyName = surveyData.name;
+  var surveyPhoto = surveyData.photo;
+  // console.log(surveyPhoto);
+  // console.log(surveyName);
+  // The variable used to calculate the difference b/n the user's socres and the scores of each user
+  var totalDifference = 0;
 
-  // API POST Requests
-  // Below code handles when a user submits a form and thus submits data to the server.
-  // In each of the below cases, when a user submits form data (a JSON object)
-  // ...the JSON is pushed to the appropriate JavaScript array
-  // (ex. User fills out a reservation request... this data is then sent to the server...
-  // Then the server saves the data to the tableData array)
-  // ---------------------------------------------------------------------------
+  //loop through the friends data array of objects to get each friends scores
+  for (var i = 0; i < friends.length - 1; i++) {
+      console.log(friends[i].name);
+      totalDifference = 0;
 
-// A POST routes /api/friends. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic.
-  app.post("/api/fridends", function(req, res) {
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
-    // req.body is available since we're using the body parsing middleware
-    if (surveyData.length < 1) {
-      surveyData.push(req.body);
-      res.json(true);
-    }
-    else {
-      console.log("something's wrong");
-    //   waitListData.push(req.body);
-      res.json(false);
-    }
-  });
+      //loop through that friends score and the users score and calculate the absolute difference between the two and push that to the total difference variable set above
+      for (var j = 0; j < 10; j++) {
+          // We calculate the difference between the scores and sum them into the totalDifference
+          totalDifference += Math.abs(parseInt(surveyScores[j]) - parseInt(friends[i].scores[j]));
+          // If the sum of differences is less then the differences of the current "best match"
+          if (totalDifference <= bestMatch.friendDifference) {
 
-  // ---------------------------------------------------------------------------
-  // I added this below code so you could clear out the table while working with the functionality.
-  // Don"t worry about it!
+              // Reset the bestMatch to be the new friend. 
+              bestMatch.name = friends[i].name;
+              bestMatch.photo = friends[i].photo;
+              bestMatch.friendDifference = totalDifference;
+          }
+      }
+  }
 
-  app.post("/api/clear", function(req, res) {
-    // Empty out the arrays of data
-    surveyData.length = [];
-    // waitListData.length = [];
+  // The push method use to save user's data to the database
+  friends.push(surveyData);
 
-    res.json({ ok: true });
-  });
+  //The res.json method will return a JSON data with the user's match which was looped through frieds data array. 
+  res.json(bestMatch);
+});
 };
