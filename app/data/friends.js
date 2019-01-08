@@ -2,27 +2,38 @@
 
 var surveyData = [
     {
-      name: "",
-      photo: "",
+      name: "Susan",
+      photo: "image.png",
       scores: [
-        // 5,
-        // 1,
-        // 4,
-        // 4,
-        // 5,
-        // 1,
-        // 2,
-        // 5,
-        // 4,
-        // 1
+        5,
+        1,
+        4,
+        4,
+        5,
+        1,
+        2,
+        5,
+        4,
+        1
       ]
       
     }
   ];
   // console.log(surveyData);
   // Note how we export the array. This makes it accessible to other files using require.
-  module.exports = surveyData;
+  module.exports = function(app){
+        //retreiving stored objects with person's data
+        app.post("/survey", function(req, res){
+          var newPerson = req.body;
+         newPerson.routeName =newPerson.name.replace(/\s+/g, "").toLowerCase();
+          // console.log(newPerson);
+          surveyData.push(person);
+      });
+      return surveyData;
+    };
+  
 
+module.exports.surveyData = surveyData;
 
 // Determine the user's most compatible friend using the following as a guide:
 
