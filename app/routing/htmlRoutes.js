@@ -16,6 +16,10 @@ module.exports =function(app){
     res.sendFile(path.join(__dirname, "../public/home.html"));
     });
 
+    app.post('/', function (req, res) {
+      res.send('Got a POST request')
+    })
+
 };
 
 
