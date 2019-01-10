@@ -1,6 +1,7 @@
 // Your apiRoutes.js file should contain two routes:
 
-var surveyyData = require("../data/friends.js").surveyData;
+// var surveyyData = require("../data/friends");
+// console.log(surveyData);
 // var waitListData = require("../data/waitinglistData");
 
 // ROUTING
@@ -9,26 +10,28 @@ module.exports = function(app) {
 
 // A GET route with the url /api/friends. This will be used to display a JSON of all possible friends.
 // GET method route
-app.get('/api/friends', function (req, res) {
-    res.send('working')
+app.get('/api/data/friends', function (req, res) {
+    res.JSON(surveyData);
   })
 // The app.post request handles when a user submits a form and thus submits data to the surver
-// app.post('/api/friends', function (req, res) {
+app.post('/api/data/friends', function (req, res) {
+    return res.JSON(friends);
 //   // loop through all of the possible options
 //   var bestMatch = {
 //       name: "",
 //       photo: "",
 //       friendDifference: 1000
-//   };
+});
 
-//   // To take the result of the user's survey POST and parse it
-//   var surveyData = req.body;
-//   var surveyScores = surveyData.scores;
-//   // To take the results of the user's name and photo, other than the survey questions, to post and parse it
-//   var surveyName = surveyData.name;
-//   var surveyPhoto = surveyData.photo;
-//   console.log(surveyPhoto);
-//   console.log(surveyName);
+  // To take the result of the user's survey POST and parse it
+  // var surveyData = req.body;
+  // var surveyScores = surveyData.scores;
+  // // To take the results of the user's name and photo, other than the survey questions, to post and parse it
+  // var surveyName = surveyData.name;
+  // var surveyPhoto = surveyData.photo;
+  // console.log(surveyPhoto);
+  // console.log(surveyName);
+  // console.log(surveyScores);
   // The variable used to calculate the difference b/n the user's socres and the scores of each user
 //   var totalDifference = 0;
 
@@ -52,8 +55,8 @@ app.get('/api/friends', function (req, res) {
 //       }
 //   }
 
-//   // The push method use to save user's data to the database
-//   friends.push(surveyData);
+  // The push method use to save user's data to the database
+  // friends.push(surveyData);
 
 //   //The res.json method will return a JSON data with the user's match which was looped through frieds data array. 
 //   res.json(bestMatch);
