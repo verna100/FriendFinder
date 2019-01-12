@@ -4,19 +4,26 @@ var surveyData = [
     {
       name: "Susan",
       photo: "image.png",
-      scores: [
-        5,
-        1,
-        4,
-        4,
-        5,
-        1,
-        2,
-        5,
-        4,
-        1
-      ]
-      
+      scores: ["5","1","4","4","5","1","2","5","4","1"] 
+    },
+    {
+      name: "Albert",
+      photo: "image.png",
+      scores: ["2","4","1","1","5","3","1","5","5","5"] 
+    }, 
+    {
+      name: "Carmen",
+      photo: "image.png",
+      scores: ["1","1","1","2","2","2","3","3","3","1"] 
+    },   {
+      name: "Jesus",
+      photo: "image.png",
+      scores: ["3","2","2","2","2","2","1","5","4","5"] 
+    },
+    {
+      name: "Angel",
+      photo: "image.png",
+      scores: ["4","4","4","4","1","1","3","3","2","1"] 
     }
   ];
   // console.log(surveyData);
@@ -33,7 +40,7 @@ var surveyData = [
     };
   
 
-module.exports.surveyData = surveyData;
+module.exports = surveyData;
 
 // Determine the user's most compatible friend using the following as a guide:
 
