@@ -28,16 +28,16 @@ var surveyData = [
   ];
   // console.log(surveyData);
   // Note how we export the array. This makes it accessible to other files using require.
-  module.exports = function(app){
-        //retreiving stored objects with person's data
-        app.post("/survey", function(req, res){
-          var newPerson = req.body;
-         newPerson.routeName =newPerson.name.replace(/\s+/g, "").toLowerCase();
-          // console.log(newPerson);
-          surveyData.push(person);
-      });
-      return surveyData;
-    };
+  // module.exports = function(app){
+  //       //retreiving stored objects with person's data
+  //       app.post("/survey", function(req, res){
+  //         var newPerson = req.body;
+  //        newPerson.routeName =newPerson.name.replace(/\s+/g, "").toLowerCase();
+  //         // console.log(newPerson);
+  //         surveyData.push(person);
+  //     });
+  //     return surveyData;
+  //   };
   
 
 module.exports = surveyData;

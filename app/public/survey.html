@@ -216,12 +216,12 @@
             $("select#q-10").val()
           ]
         };
-        console.log(surveyData);
+        // console.log(surveyData);
 
 // // AJAX post the data to the friends API.
-$.post("/api/friends", surveyData, 
+$.post("/api/data/friends", surveyData, 
     function(data) {
-        console.log("worked")
+        // console.log("worked")
     $("#match-name").text(data.name);
     $("#match-img").attr("src", data.photo);
 // // // Show the modal with the best match

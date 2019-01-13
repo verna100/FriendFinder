@@ -25,7 +25,7 @@ app.use(bodyParser.json())
 require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);
 
-require('./app/data/friends.js')
+// require('./app/data/friends.js')
 
 app.listen(PORT, function(){
   console.log("App listening on PORT: " + PORT);
