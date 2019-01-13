@@ -35,7 +35,7 @@ app.post('/api/data/friends', function (req, res) {
 });
 
 // Find the minimum difference score.
-var minimumDifference = Math.min.apply(0, differences);
+// var minimumDifference = Math.min.apply(0, differences);
 
 // Since there may be more than one potential friend with that score, create an array.
 var bestMatches = [];
