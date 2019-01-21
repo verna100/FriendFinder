@@ -9,6 +9,12 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
+<style>
+    .match-img{
+    height:150px;
+    width:150px;
+    }    
+    </style>
 
 <body>
 <div class ="container">
@@ -149,7 +155,7 @@
 
 <footer class="footer">
     <div class="container">
-        <p><a href="/api/data/friends">API Friends List</a> | <a href="https://github.com/verna100/FriendFinder" alt="Github Repo">Gitub Repo</a>
+        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/verna100/FriendFinder" alt="Github Repo">Gitub Repo</a>
     </div>
 </footer>
 
@@ -219,7 +225,7 @@
         // console.log(surveyData);
 
 // // AJAX post the data to the friends API.
-$.post("/api/data/friends", surveyData, 
+$.post("/api/friends", surveyData, 
     function(data) {
         // console.log("worked")
     $("#match-name").text(data.name);
