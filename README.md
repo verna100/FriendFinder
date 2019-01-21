@@ -35,7 +35,7 @@ You should save your application's data inside of app/data/friends.js as an arra
 
 
 
-**This is the portion i'm having trouble with, something is off and keeps breaking the code, still trying to work on getting this fixed**
+**I was able to fix this portion of the app with the solution we were given, updated code an added images**
 Determine the user's most compatible friend using the following as a guide:
 
 Convert each user's results into a simple array of numbers (ex: [5, 1, 4, 4, 5, 1, 2, 5, 4, 1]).
